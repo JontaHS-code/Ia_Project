@@ -2,11 +2,11 @@ document.getElementById("send-btn").addEventListener("click", function () {
   enviarMensagem(); // Chama a função para enviar a mensagem
 });
 
-// Adiciona o evento para enviar a mensagem ao pressionar Enter
+// Adiciona o evento para enviar a mensagem ao pressionar Enter, mas Shift+Enter pula uma linha
 document
   .getElementById("user-input")
   .addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // Impede o comportamento padrão do Enter (nova linha)
       enviarMensagem(); // Chama a função para enviar a mensagem
     }
@@ -15,13 +15,13 @@ document
 // Função para enviar a mensagem
 function enviarMensagem() {
   const userInput = document.getElementById("user-input");
-  const message = userInput.value;
+  const message = userInput.value.trim();
   if (message) {
     addMessage("user", message); // Adiciona a mensagem do usuário
     userInput.value = ""; // Limpa o campo de entrada
 
     // Exibe os três pontos enquanto o bot está "pensando"
-    addLoadingDots();
+    const loadingInterval = addLoadingDots();
 
     fetch("/api/chat", {
       method: "POST",
@@ -33,8 +33,17 @@ function enviarMensagem() {
       .then((response) => response.json())
       .then((data) => {
         // Remove a mensagem de carregamento antes de adicionar a resposta
+        clearInterval(loadingInterval); // Para o efeito de "carregamento"
         removeLastMessage();
         addMessage("bot", data.response); // Adiciona a resposta do bot
+      })
+      .catch(() => {
+        clearInterval(loadingInterval);
+        removeLastMessage();
+        addMessage(
+          "bot",
+          "Desculpe, ocorreu um erro ao processar sua mensagem."
+        );
       });
   }
 }
@@ -101,7 +110,7 @@ function addLoadingDots() {
     loadingText.textContent = ".".repeat(dotCount); // Atualiza os pontos
   }, 500);
 
-  // Limpa o intervalo após a resposta do bot
+  // Retorna o intervalo para ser interrompido quando a resposta for recebida
   return interval;
 }
 
