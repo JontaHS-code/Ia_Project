@@ -1,0 +1,112 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #e0e0e0,
+    #f5f5f5
+  ); /* Degradê suave em tons claros */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.chat-container {
+  width: 400px;
+  background-color: #ffffff; /* Fundo branco para o container do chat */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.chat-logo {
+  display: block;
+  margin: 0 auto 15px; /* Centraliza a imagem e adiciona margem inferior */
+  max-width: 90%; /* Garante que a imagem não ultrapasse a largura do container */
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0; /* Bordas sutis em tom pastel */
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column; /* Faz a caixa de chat exibir mensagens em coluna */
+  background-color: #f9f9f9; /* Fundo claro para a área de mensagens */
+}
+
+.input-container {
+  display: flex; /* Alinha o campo de entrada e os botões horizontalmente */
+  align-items: center; /* Alinha verticalmente os elementos */
+  margin-top: 10px; /* Espaçamento superior para o container de entrada */
+}
+
+/* Ajuste a largura do input para incluir o botão "Novo Chat" */
+input[type="text"] {
+  width: calc(80% - 170px); /* Ajusta a largura do campo de entrada */
+  padding: 10px;
+  border: 1px solid #e0e0e0; /* Bordas sutis */
+  border-radius: 5px;
+  margin-right: 10px; /* Espaçamento entre o campo de entrada e os botões */
+  background-color: #ffffff; /* Fundo branco para o campo de entrada */
+}
+
+button {
+  height: 40px; /* Define a altura do botão */
+  padding: 0 20px; /* Ajusta o padding horizontal */
+  border: none;
+  border-radius: 5px;
+  background-color: #6ec6ff; /* Azul pastel para o botão Enviar */
+  color: #fff;
+  cursor: pointer;
+  margin-left: 10px; /* Espaçamento entre os botões */
+  transition: background-color 0.3s ease; /* Efeito de transição suave */
+}
+
+button:hover {
+  background-color: #4da6e0; /* Azul mais escuro para hover */
+}
+
+/* Ajuste do botão Novo Chat para manter a largura correta */
+#new-chat-btn {
+  width: 120px; /* Largura do botão Novo Chat */
+  background-color: #ffcc80; /* Amarelo pastel para o botão Novo Chat */
+}
+
+#new-chat-btn:hover {
+  background-color: #e0a862; /* Amarelo mais escuro para hover */
+}
+
+.message {
+  display: flex; /* Usa flexbox para alinhar ícones e texto */
+  align-items: flex-start; /* Alinha o ícone com a linha de texto */
+  margin: 5px 0; /* Espaçamento entre mensagens */
+}
+
+.user-message {
+  justify-content: flex-start; /* Alinha mensagens do usuário à esquerda */
+  background-color: #b3e5fc; /* Azul muito claro para mensagens do usuário */
+  border-radius: 5px;
+  padding: 8px;
+  text-align: left;
+  color: #0d47a1; /* Texto escuro para maior contraste */
+}
+
+.bot-message {
+  justify-content: flex-end; /* Alinha mensagens do bot à direita */
+  background-color: #c8e6c9; /* Verde muito claro para mensagens do bot */
+  border-radius: 5px;
+  padding: 8px;
+  text-align: left;
+  color: #1b5e20; /* Texto escuro para maior contraste */
+}
+
+.message-icon {
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: 24px; /* Ajuste o tamanho conforme necessário */
+  vertical-align: top; /* Alinha verticalmente com a parte superior do texto */
+  margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+}
