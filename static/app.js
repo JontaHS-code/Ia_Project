@@ -18,8 +18,9 @@ function appendMessage(sender, message) {
   output.scrollTop = output.scrollHeight;
 }
 
+javascript;
 function fetchChatResponse(message) {
-  fetch("/chat", {
+  fetch("http://localhost:5000/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,6 +29,6 @@ function fetchChatResponse(message) {
   })
     .then((response) => response.json())
     .then((data) => {
-      appendMessage("Bot", data.resposta);
+      appendMessage("Bot", data.resposta.content); // Accessing the nested 'content'
     });
 }
