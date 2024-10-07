@@ -11,10 +11,10 @@ import os
 load_dotenv()
 
 # Inicializando o cliente OpenAI
-openai.api_key = "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"
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Conectando ao banco de dados PostgreSQL
-db = SQLDatabase.from_uri('postgresql+psycopg2://postgres:32041262@localhost/calendario')
+db = SQLDatabase.from_uri('DATABASE_URL')
 
 # Inicializando o modelo OpenAI GPT-4 Mini
 llm = ChatOpenAI(model_name="gpt-4")
