@@ -1,0 +1,55 @@
+﻿//********************************************************
+
+$(document).ready(function () {
+    $('html').bind('cut copy paste', function (e) {
+        e.preventDefault();
+    });
+
+    $("html").on("contextmenu", function (e) {
+        return false;
+    });
+});
+
+$(window).focus(function () {
+    $("html").show();
+}).blur(function () {
+    $("html").hide();
+});
+
+//********************************************************
+
+document.addEventListener('keyup', (e) => {
+    if (e.key == 'PrintScreen') {
+        navigator.clipboard.writeText('');
+        alert('A tecla printscreen foi desabilitada.');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key == 'p') {
+        alert('A tecla foi desabilitada.');
+        e.cancelBubble = true;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    }
+});
+
+//********************************************************
+
+function disableSelect(event) {
+    event.preventDefault();
+}
+
+function startDrag(event) {
+    window.addEventListener('mouseup', onDragEnd);
+    window.addEventListener('selectstart', disableSelect);
+}
+
+function onDragEnd() {
+    window.removeEventListener('mouseup', onDragEnd);
+    window.removeEventListener('selectstart', disableSelect);
+}
+
+window.addEventListener('selectstart', function (e) { e.preventDefault(); });
+
+//********************************************************
